@@ -22,7 +22,7 @@
 
 {
   // 문자 타입(string type)
-  let message = `변수 타입은 변수 이름 뒤에 ':type'을 작성하는 것을 말하며 이를 "타입 에너테이션"이라 부릅니다.`;
+  let message : string = `변수 타입은 변수 이름 뒤에 ':type'을 작성하는 것을 말하며 이를 "타입 에너테이션"이라 부릅니다.`;
 
   // 숫자 타입(number type)
   let currentYear = 2022;
