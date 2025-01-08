@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "start": "node ./server/app.node.js --watch",
-    "dev": "node ./server/app.ts"
-  },
-  "type": "module",
-  "devDependencies": {},
-  "name": "typescript-essentials"
-}
