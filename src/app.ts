@@ -10,25 +10,28 @@
 // 여러 정적 에셋 디렉토리를 사용하려면 express.static 미들웨어 함수를 여러 번 호출합니다.
 //
 // --------------------------------------------------------------------------
-import 'dotenv/config';
-import express from 'express';
-import type { Express, Response, Request, NextFunction } from 'express';
-
+import "dotenv/config";
+import express from "express";
+import type { Express } from "express";
+import entryHandler from "./handlers/entry";
+import greetingMessage from "./middlewares/greetingMessage";
 
 const app: Express = express();
 
-const HOSTNAMES = process.env.HOSTNAMES ?? 'localhost';
+// for Windows Users
+const HOSTNAME = "localhost";
+// const HOSTNAME = process.env.HOSTNAME ?? 'localhost';
 const PORT = Number(process.env.PORT) ?? 4000;
-const MESSAGE = `웹 서버 구동 : http://${HOSTNAMES}:${PORT}`;
+const MESSAGE = `웹 서버 구동 : http://${HOSTNAME}:${PORT}`;
 
+/* Middleware --------------------------------------------------------------- */
+app.use(greetingMessage);
+app.use(express.static('public'));
 
-// Routing -------------------------------------------------------------------
+/* Routing ------------------------------------------------------------------ */
 
-app.get("/", (request: Request, response: Response, nextFunction: NextFunction) => {
-  // 서버 -> 클라이언트 응답
-  response.send("<h1>Hello, Express.js</h1>");
-});
+app.get("/", entryHandler);
 
-app.listen(PORT, HOSTNAMES, () => {
+app.listen(PORT, HOSTNAME, () => {
   console.log(MESSAGE);
-})
+});
